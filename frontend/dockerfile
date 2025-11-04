@@ -1,8 +1,9 @@
 # ---- DEV DOCKERFILE ----
 FROM node:20-alpine
+RUN apk add --no-cache python3 make g++ bash
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 5173
-CMD ["npm", "run", "dev"]
+CMD ["npx", "cross-env", "CHOKIDAR_USEPOLLING=true", "vite", "--host", "0.0.0.0", "--port", "5173"]
