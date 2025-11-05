@@ -1,0 +1,79 @@
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  background-color: var(--app-secondary);
+  color: var(--app-text-light);
+  padding: 0 1rem;
+  box-shadow: var(--app-shadow);
+}
+
+.homepage {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  padding: 2px 4px;
+  color: var(--app-text-light);
+}
+
+.logo-img {
+  height: 28px;
+  width: auto;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.homepage:hover .logo-img {
+  animation-duration: 0.2s;
+  transform: scale(1.1);
+}
+
+.homepage:hover .name {
+  text-decoration: underline;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.7rem;
+  font-size: 1.1rem;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: var(--app-white);
+  box-shadow: var(--app-shadow);
+  border-radius: var(--app-border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  z-index: 10;
+}
+
+.user-option {
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  color: var(--app-text-dark);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.user-option:hover {
+  background: var(--app-gray-100);
+}

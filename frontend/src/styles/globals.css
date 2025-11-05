@@ -1,0 +1,32 @@
+:root {
+  --app-gold: #ffc61b;
+  --app-gold-light: #ffd95a;
+  --app-beige-bg: #f8f5f0;
+  --app-beige-panel: #e7e2dc;
+  --app-dark-brown: #2c2a27;
+  --app-text-dark: #3a3a3a;
+  --app-text-light: #f8f5f0;
+
+  --app-success: #2e8b57;
+  --app-danger: #c0392b;
+  --app-warning: #ffc107;
+  --app-info: #8cb4d8;
+
+  --app-white: #ffffff;
+  --app-gray-100: #f2f2f2;
+  --app-gray-300: #d9d9d9;
+  --app-gray-600: #6c757d;
+  --app-gray-900: #1c1c1c;
+
+  --app-primary: var(--app-gold);
+  --app-secondary: var(--app-dark-brown);
+  --app-body-bg: var(--app-beige-bg);
+  --app-body-color: var(--app-text-dark);
+
+  --app-link-color: var(--app-gold);
+  --app-link-hover-color: var(--app-gold-light);
+
+  --app-border-color: var(--app-gray-300);
+  --app-border-radius: 0.5rem;
+  --app-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}

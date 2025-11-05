@@ -1,0 +1,31 @@
+.app-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: var(--app-border-radius);
+  cursor: pointer;
+  box-shadow: var(--app-shadow);
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.app-btn:hover {
+  transform: translateY(+1px);
+}
+
+.app-btn-primary {
+  background: var(--app-primary);
+  color: var(--app-text-dark);
+}
+
+.app-btn-primary:hover {
+  background: var(--app-gold-light);
+}
+
+.app-btn-secondary {
+  background: var(--app-secondary);
+  color: var(--app-text-light);
+}
+
+.app-btn-secondary:hover {
+  background: #3b3935;
+}
