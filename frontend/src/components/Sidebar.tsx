@@ -9,6 +9,7 @@ import {
   FiFileText,
   FiFile,
   FiArchive,
+  FiCircle,
 } from 'react-icons/fi';
 import { useState, useEffect, useRef } from "react";
 
