@@ -5,8 +5,10 @@
   <a href="https://react.dev/" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="100" alt="React Logo" />
   </a>
+  <a href="https://www.postgresql.org/" target="_blank">
+    <img src="https://www.postgresql.org/media/img/about/press/elephant.png" width="100" alt="Postgresql Logo" />
 </div>
 
 ## Description
 
-NestJs + React + PostGres app
+NestJs + React + PostGreSql app

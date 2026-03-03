@@ -1,22 +1,46 @@
 import "./css/Sidebar.css";
 import { NavLink } from "react-router-dom";
-import {
-  FaCog,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
-import {
-  FiFileText,
-  FiFile,
-  FiArchive,
-  FiCircle,
-} from 'react-icons/fi';
 import { useState, useEffect, useRef } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as FiIcons from 'react-icons/fi';
+import { get } from '../api/client';
+
+interface NavResponse {
+  navigation: NavItem[];
+}
+
+interface NavItem {
+  id: number;
+  name: string;
+  route: string;
+  icon: string;
+}
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const [isSmallWidth, setIsSmallWidth] = useState(window.innerWidth < 750);
+  const [navigation, setNavigation] = useState<NavItem[]>([]);
   const sidebarRef = useRef<HTMLDivElement>(null);
+
+  const renderIcon = (iconName: string) => {
+    const IconComponent = (FiIcons as any)[iconName] || (FaIcons as any)[iconName];
+
+    return IconComponent ? <IconComponent /> : <FaIcons.FaCircle />;
+  };
+
+  const fetchNavigation = async () => {
+    try {
+      const data = await get<NavResponse>('/');
+
+      setNavigation(data.navigation);
+    } catch (error) {
+      console.error("Błąd podczas pobierania:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchNavigation();
+  }, []);
 
   const toggleSidebar = () => setCollapsed(!collapsed);
   const handleClickContent = (event: MouseEvent) => {
@@ -54,22 +78,20 @@ function Sidebar() {
       ref={sidebarRef}
     >
       <aside className="sidebar">
-        <NavLink to="/documents" className="sidebar-item">
-          <FiFileText /> <span>Dokumenty</span>
-        </NavLink>
-        <NavLink to="/files" className="sidebar-item">
-          <FiFile /> <span>Pliki</span>
-        </NavLink>
-        <NavLink to="/archive" className="sidebar-item">
-          <FiArchive /> <span>Archiwum</span>
-        </NavLink>
-        <NavLink to="/settings" className="sidebar-item">
-          <FaCog /> <span>Ustawienia</span>
-        </NavLink>
+        {navigation.map((item) => (
+          <NavLink
+            key={item.id}
+            to={`/${item.route}`}
+            className="sidebar-item"
+          >
+            {renderIcon(item.icon)}
+            <span>{item.name}</span>
+          </NavLink>
+        ))}
       </aside>
 
       <div className="sidebar-toggle" onClick={toggleSidebar}>
-        {collapsed ? <FaChevronRight /> : <FaChevronLeft />}
+        {collapsed ? <FaIcons.FaChevronRight /> : <FaIcons.FaChevronLeft />}
       </div>
     </div>
   );

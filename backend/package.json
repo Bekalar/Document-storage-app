@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nest start",
-    "start:dev": "cross-env CHOKIDAR_USEPOLLING=true nest start --watch",
+  
+    "start:dev": "nodemon --config nodemon.json",
     "start:prod": "node dist/main",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -22,10 +23,13 @@
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.1.14",
     "@nestjs/platform-express": "^11.1.14",
+    "@nestjs/typeorm": "^11.0.0",
+    "cross-env": "^10.1.0",
     "node-pg-migrate": "^8.0.4",
     "pg": "^8.19.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.28"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.0",
@@ -34,6 +38,7 @@
     "@types/jest": "^30.0.0",
     "dotenv-cli": "^11.0.0",
     "jest": "^30.2.0",
+    "nodemon": "^3.1.14",
     "ts-jest": "^29.4.6",
     "typescript": "^5.7.0"
   },
