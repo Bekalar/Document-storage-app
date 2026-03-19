@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RouteEntity } from './route.entity';
+import { RouteEntity } from './route/route.entity';
+import { RoutesController } from './route/route.controller';
+import { RoutesService } from './route/route.service';
 
 @Module({
   imports: [
@@ -17,8 +18,8 @@ import { RouteEntity } from './route.entity';
       synchronize: false,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, RoutesController],
+  providers: [RoutesService],
 })
 
 export class AppModule { }

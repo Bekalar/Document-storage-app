@@ -30,7 +30,7 @@ function Sidebar() {
 
   const fetchNavigation = async () => {
     try {
-      const data = await get<NavResponse>('/');
+      const data = await get<NavResponse>('/routes');
 
       setNavigation(data.navigation);
     } catch (error) {

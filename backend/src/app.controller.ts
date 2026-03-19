@@ -1,16 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor() { }
 
-  @Get()
-  async homepage() {
-    const routes = await this.appService.getRoutes();
-
-    return {
-      navigation: routes,
-    };
+  @Get('/')
+  async app() {
+    return 'app';
   }
 }
