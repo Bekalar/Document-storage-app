@@ -3,23 +3,16 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as FiIcons from 'react-icons/fi';
-import { get } from '../api/client';
 
-interface NavResponse {
-  navigation: NavItem[];
+import { type NavItem } from "../modules/routes/types/routes";
+
+interface SidebarProps {
+  routes: NavItem[];
 }
 
-interface NavItem {
-  id: number;
-  name: string;
-  route: string;
-  icon: string;
-}
-
-function Sidebar() {
+function Sidebar({ routes }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [isSmallWidth, setIsSmallWidth] = useState(window.innerWidth < 750);
-  const [navigation, setNavigation] = useState<NavItem[]>([]);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   const renderIcon = (iconName: string) => {
@@ -27,20 +20,6 @@ function Sidebar() {
 
     return IconComponent ? <IconComponent /> : <FaIcons.FaCircle />;
   };
-
-  const fetchNavigation = async () => {
-    try {
-      const data = await get<NavResponse>('/routes');
-
-      setNavigation(data.navigation);
-    } catch (error) {
-      console.error("Błąd podczas pobierania:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchNavigation();
-  }, []);
 
   const toggleSidebar = () => setCollapsed(!collapsed);
   const handleClickContent = (event: MouseEvent) => {
@@ -78,7 +57,7 @@ function Sidebar() {
       ref={sidebarRef}
     >
       <aside className="sidebar">
-        {navigation.map((item) => (
+        {routes.map((item) => (
           <NavLink
             key={item.id}
             to={`/${item.route}`}

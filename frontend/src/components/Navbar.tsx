@@ -3,6 +3,7 @@ import logo from "../assets/logo.svg";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Button from "./Button";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,12 +30,10 @@ function Navbar() {
       </Link>
 
       <div className="user-menu">
-        <button
-          className="app-btn app-btn-primary user-btn"
-          onClick={toggleMenu}
-        >
+        <Button primary className="user-btn" onClick={toggleMenu}>
           <FaUser />
-        </button>
+          <span className="ms-2">Profil</span> {/* ms-2 to margines z Bootstrapa */}
+        </Button>
 
         {menuOpen && (
           <div className="user-dropdown">

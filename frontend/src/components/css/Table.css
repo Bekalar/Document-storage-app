@@ -1,0 +1,87 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--app-white);
+  border-radius: var(--app-border-radius);
+  border: 1px solid var(--app-border-color);
+  box-shadow: var(--app-shadow);
+  margin-bottom: 1.5rem;
+}
+
+.table-main {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--app-text-dark);
+}
+
+.table-header {
+  background-color: var(--app-dark-brown);
+  color: var(--app-text-light);
+}
+
+.table-header th {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border-bottom: 3px solid var(--app-gold);
+}
+
+.table-body td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--app-beige-panel);
+  vertical-align: middle;
+}
+
+.table-row:nth-child(even) {
+  background-color: var(--app-beige-bg);
+}
+
+.table-row {
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: var(--app-gold-light) !important;
+  cursor: default;
+}
+
+.table-row:last-child td {
+  border-bottom: none;
+}
+
+.table-cell-code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--app-gray-100);
+  color: var(--app-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.table-cell-bold {
+  font-weight: 700;
+  color: var(--app-dark-brown);
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.table-icon {
+  font-size: 1.2rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  color: var(--app-gold);
+}
+
+.w-0 {
+  width: 0;
+}

@@ -1,9 +1,13 @@
 :root {
   --app-gold: #ffc61b;
   --app-gold-light: #ffd95a;
+  
+  --app-dark-brown: #2c2a27;
+  --app-dark-brown-light: #3b3935;
+
   --app-beige-bg: #f8f5f0;
   --app-beige-panel: #e7e2dc;
-  --app-dark-brown: #2c2a27;
+  
   --app-text-dark: #3a3a3a;
   --app-text-light: #f8f5f0;
 
@@ -19,7 +23,11 @@
   --app-gray-900: #1c1c1c;
 
   --app-primary: var(--app-gold);
+  --app-primary-light: var(--app-gold-light);
+  
   --app-secondary: var(--app-dark-brown);
+  --app-secondary-light: var(--app-dark-brown-light);
+
   --app-body-bg: var(--app-beige-bg);
   --app-body-color: var(--app-text-dark);
 

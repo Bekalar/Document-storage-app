@@ -10,27 +10,27 @@ const client: AxiosInstance = axios.create({
   },
 });
 
-export const get = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+export const jsonGet = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
   const response: AxiosResponse<T> = await client.get(url, config);
   return response.data;
 };
 
-export const post = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const jsonPost = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
   const response: AxiosResponse<T> = await client.post(url, data, config);
   return response.data;
 };
 
-export const put = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const jsonPut = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
   const response: AxiosResponse<T> = await client.put(url, data, config);
   return response.data;
 };
 
-export const patch = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const jsonPatch = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
   const response: AxiosResponse<T> = await client.patch(url, data, config);
   return response.data;
 };
 
-export const remove = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+export const jsonDelete = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
   const response: AxiosResponse<T> = await client.delete(url, config);
   return response.data;
 };

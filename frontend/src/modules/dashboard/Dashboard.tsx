@@ -1,6 +1,6 @@
 function Dashboard() {
   return (
-    <div></div>
+    <div className="text-center">Witamy w systemie</div>
   );
 }
 

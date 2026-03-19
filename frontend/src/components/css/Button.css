@@ -1,0 +1,109 @@
+.button-custom {
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: var(--app-border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s, border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  box-shadow: var(--app-shadow);
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.button-custom:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.button-custom:active {
+  transform: translateY(0);
+}
+
+.button-custom:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  transform: none;
+}
+
+.button-primary {
+  background-color: var(--app-primary);
+  color: var(--app-text-dark);
+  border-color: var(--app-primary);
+}
+.button-primary:hover {
+  background-color: var(--app-primary-light);
+  border-color: var(--app-primary-light);
+}
+
+.button-secondary {
+  background-color: var(--app-secondary);
+  color: var(--app-text-light);
+  border-color: var(--app-secondary);
+}
+.button-secondary:hover {
+  background-color: var(--app-secondary-light);
+  border-color: var(--app-secondary-light);
+}
+
+.button-success { 
+    background-color: var(--app-success); 
+    color: white; 
+    border-color: var(--app-success);
+}
+
+.button-danger { 
+    background-color: var(--app-danger); 
+    color: white; 
+    border-color: var(--app-danger);
+}
+
+.button-warning { 
+    background-color: var(--app-warning); 
+    color: var(--app-text-dark); 
+    border-color: var(--app-warning);
+}
+
+.button-info { 
+    background-color: var(--app-info); 
+    color: white; 
+    border-color: var(--app-info);
+}
+
+.button-outline {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.button-outline.button-primary { color: var(--app-primary); }
+.button-outline.button-secondary { color: var(--app-secondary); }
+.button-outline.button-success { color: var(--app-success); }
+.button-outline.button-danger { color: var(--app-danger); }
+
+.button-outline:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.button-rounded {
+  border-radius: 50px;
+}
+
+.button-sm { 
+  padding: 0.25rem 0.6rem; 
+  font-size: 0.875rem; 
+}
+
+.button-md { 
+  padding: 0.5rem 1.2rem; 
+  font-size: 1rem; 
+}
+
+.button-lg { 
+  padding: 0.75rem 1.8rem; 
+  font-size: 1.125rem; 
+}
