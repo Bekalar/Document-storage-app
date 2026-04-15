@@ -32,7 +32,7 @@ function Navbar() {
       <div className="user-menu">
         <Button primary className="user-btn" onClick={toggleMenu}>
           <FaUser />
-          <span className="ms-2">Profil</span> {/* ms-2 to margines z Bootstrapa */}
+          <span className="ms-2">Profil</span>
         </Button>
 
         {menuOpen && (

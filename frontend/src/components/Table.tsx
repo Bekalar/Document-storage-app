@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import "./css/Table.css";
 
 interface TableColumn<T> {
@@ -15,26 +15,19 @@ interface TableProps<T> {
 }
 
 function Table<T>({ data, config, keyFn }: TableProps<T>) {
-  const renderedHeaders = config.map((column) => {
+  const renderedHeaders = config.map((column, index) => {
     const thClasses = `table-th ${column.headerClassName || ""}`.trim();
 
-    if (column.header) {
-      return (
-        <th key={column.label} className={thClasses}>
-          <Fragment>{column.header()}</Fragment>
-        </th>
-      );
-    }
-
     return (
-      <th key={column.label} className={thClasses}>
-        {column.label}
+      <th key={`${column.label}-${index}`} className={thClasses} scope="col">
+        {column.header ? column.header() : column.label}
       </th>
     );
   });
 
   const renderedRows = data.map((rowData) => {
     const renderedCells = config.map((column) => {
+
       return (
         <td key={column.label}>
           {column.render(rowData)}
@@ -58,7 +51,15 @@ function Table<T>({ data, config, keyFn }: TableProps<T>) {
           </tr>
         </thead>
         <tbody className="table-body">
-          {renderedRows}
+          {renderedRows.length > 0 ? (renderedRows) :
+            (
+              <tr>
+                <td colSpan={config.length} className="table-empty">
+                  Brak danych do wyświetlenia
+                </td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
     </div>
