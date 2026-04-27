@@ -3,7 +3,7 @@ export interface NavItem {
   name: string;
   route: string;
   icon: string;
-  order?: number | null;
+  routeOrder?: number | null;
 }
 
 export interface NavResponse {

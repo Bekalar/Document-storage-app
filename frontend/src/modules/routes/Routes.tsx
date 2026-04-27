@@ -9,13 +9,13 @@ import Button from "../../components/Button";
 
 interface TableColumn<T> {
   label: string;
-  render: (rowData: T) => ReactNode;
+  render: (rowData: T, index: number) => ReactNode;
   header?: () => ReactNode;
   headerClassName?: string;
 }
 
 type RouteFormData = Omit<NavItem, 'id'>;
-const INITIAL_FORM_STATE: RouteFormData = { name: '', route: '', icon: '' };
+const INITIAL_FORM_STATE: RouteFormData = { name: '', route: '', icon: '', routeOrder: null };
 
 function Routes() {
   const [routes, setRoutes] = useState<NavItem[]>([]);
@@ -49,7 +49,7 @@ function Routes() {
 
   const handleOpenEdit = (route: NavItem) => {
     setActiveRoute(route);
-    setFormData({ name: route.name, route: route.route, icon: route.icon });
+    setFormData({ name: route.name, route: route.route, icon: route.icon, routeOrder: route.routeOrder });
     setModalType('edit');
   };
 
@@ -75,6 +75,7 @@ function Routes() {
       }
       closeModal();
       await fetchRoutes();
+      window.location.reload();
     } catch (err) {
       console.error(err);
     } finally {
@@ -89,6 +90,7 @@ function Routes() {
       await jsonDelete(`/routes/${activeRoute.id}`);
       closeModal();
       await fetchRoutes();
+      window.location.reload();
     } catch (err) {
       console.error(err);
     } finally {
@@ -127,10 +129,30 @@ function Routes() {
           onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
         />
       </div>
+      <div>
+        <label className="form-label">Kolejność</label>
+        <input
+          type="number"
+          className="form-control form-input"
+          value={formData.routeOrder ?? ''}
+          onChange={(e) => {
+            const val = e.target.value;
+            setFormData({
+              ...formData,
+              routeOrder: val === '' ? null : Number(val)
+            });
+          }}
+        />
+      </div>
     </div>
   );
 
   const config: TableColumn<NavItem>[] = [
+    {
+      label: 'L.p.',
+      headerClassName: 'th-lp',
+      render: (_, index) => <span className="table-cell-bold">{index + 1}.</span>
+    },
     {
       label: 'Nazwa',
       headerClassName: 'th-name',
@@ -145,6 +167,11 @@ function Routes() {
       label: 'Ikona',
       headerClassName: 'th-icon text-center',
       render: (route) => <div className="text-center">{renderIcon(route.icon)}</div>
+    },
+    {
+      label: 'Kolejność',
+      headerClassName: 'th-order text-center',
+      render: (route) => <div className="text-center table-cell-bold">{route.routeOrder ?? '-'}</div>
     },
     {
       label: 'Akcje',

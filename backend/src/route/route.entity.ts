@@ -4,7 +4,7 @@ import {
   Column,
   BaseEntity,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('routes')
@@ -27,9 +27,15 @@ export class RouteEntity extends BaseEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
+  @Column({ name: 'route_order', type: 'int', nullable: true })
+  routeOrder: number | null;
+
   static async findAllRoutes() {
     return await this.find({
-      order: { id: 'ASC' }
+      order: {
+        routeOrder: 'ASC',
+        id: 'ASC'
+      }
     });
   }
 }

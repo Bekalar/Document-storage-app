@@ -21,6 +21,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: document_backend
+    env_file:
+      - .env
     command: npm run start:dev
     restart: always
     volumes:

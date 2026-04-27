@@ -3,7 +3,7 @@ import "./css/Table.css";
 
 interface TableColumn<T> {
   label: string;
-  render: (rowData: T) => ReactNode;
+  render: (rowData: T, index: number) => ReactNode;
   header?: () => ReactNode;
   headerClassName?: string;
 }
@@ -25,12 +25,12 @@ function Table<T>({ data, config, keyFn }: TableProps<T>) {
     );
   });
 
-  const renderedRows = data.map((rowData) => {
+  const renderedRows = data.map((rowData, index) => {
     const renderedCells = config.map((column) => {
 
       return (
         <td key={column.label}>
-          {column.render(rowData)}
+          {column.render(rowData, index)}
         </td>
       );
     });
