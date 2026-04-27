@@ -21,6 +21,6 @@ export const up = (pgm) => {
  */
 export const down = (pgm) => {
   pgm.sql(`
-    ALTER TABLE routes DROP COLUMN route_order order
+    ALTER TABLE routes DROP COLUMN route_order INTEGER
   `);
 };
