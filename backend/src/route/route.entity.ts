@@ -29,13 +29,4 @@ export class RouteEntity extends BaseEntity {
 
   @Column({ name: 'route_order', type: 'int', nullable: true })
   routeOrder: number | null;
-
-  static async findAllRoutes() {
-    return await this.find({
-      order: {
-        routeOrder: 'ASC',
-        id: 'ASC'
-      }
-    });
-  }
 }

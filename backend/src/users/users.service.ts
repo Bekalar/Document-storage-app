@@ -1,8 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { UserProfileEntity } from './user-profile.entity';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { UserCredentialsEntity } from './user-credentials.entity';
 
 @Injectable()
 export class UsersService {
@@ -12,10 +13,17 @@ export class UsersService {
 
     @InjectRepository(UserProfileEntity)
     private readonly profileRepository: Repository<UserProfileEntity>,
+
+    @InjectRepository(UserCredentialsEntity)
+    private readonly credentialsRepository: Repository<UserCredentialsEntity>
   ) { }
 
   async getAll() {
-    return await UserEntity.findAllUsers();
+    return await this.userRepository.find({
+      order: {
+        login: 'ASC'
+      }
+    });
   }
 
   async findUser(login: string) {
@@ -25,7 +33,14 @@ export class UsersService {
     return await this.userRepository.findOneBy({ login });
   }
 
-  create(login: string, password: string) {
+  async findOne(id: number) {
+    if (!id) {
+      return null;
+    }
+    return this.userRepository.findOneBy({ id });
+  }
+
+  async create(login: string, password: string) {
     const user = this.userRepository.create({ login, credentials: { passwordHash: password } });
     return this.userRepository.save(user);
   }
@@ -45,6 +60,26 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
     return this.userRepository.remove(user);
+  }
+
+  async updatePassword(login: string, newPasswordHash: string) {
+    const user = await this.userRepository.findOne({
+      where: { login },
+      relations: ['credentials']
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (!user.credentials) {
+      user.credentials = this.credentialsRepository.create({ passwordHash: newPasswordHash });
+      user.credentials.user = user;
+    } else {
+      user.credentials.passwordHash = newPasswordHash;
+    }
+
+    return await this.userRepository.save(user);
   }
 
   async updateProfile(

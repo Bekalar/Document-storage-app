@@ -34,12 +34,4 @@ export class UserEntity extends BaseEntity {
 
   @OneToOne(() => UserProfileEntity, (profile) => profile.user, { cascade: true })
   profile: UserProfileEntity;
-
-  static async findAllUsers() {
-    return await this.find({
-      order: {
-        login: 'ASC'
-      }
-    });
-  }
 }
